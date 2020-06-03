@@ -13,10 +13,8 @@ export default function Home() {
         <h1 className="title">SWR Examples</h1>
 
         <p className="description">
-          <a href="https://swr.now.sh/" style={{ textDecoration: "underline" }}>
-            SWR
-          </a>{" "}
-          is a React Hooks library for remote data fetching.
+          <a href="https://swr.now.sh/">SWR</a> is a React Hooks library for
+          remote data fetching.
         </p>
 
         <div className="grid">
@@ -27,6 +25,20 @@ export default function Home() {
             </a>
           </Link>
         </div>
+
+        <p>
+          <em>
+            *Due to{" "}
+            <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS">
+              CORS
+            </a>{" "}
+            issues, you may need to{" "}
+            <a href="/disable-firefox-tracking-protection.png">
+              disable Firefox Tracking Protection
+            </a>{" "}
+            and/or any AdBlockers to view examples.
+          </em>
+        </p>
       </main>
 
       <footer>
@@ -80,7 +92,6 @@ export default function Home() {
 
         a {
           color: inherit;
-          text-decoration: none;
         }
 
         .title a {
