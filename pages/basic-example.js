@@ -1,14 +1,14 @@
-import useSWR from "swr";
+import useSWR from 'swr'
 
-const fetcher = (url) => fetch(url).then((r) => r.json());
+const fetcher = (url) => fetch(url).then((r) => r.json())
 
 export default function IndexPage() {
-  const { data, error } = useSWR(
+  const {data, error} = useSWR(
     `https://www.reddit.com/r/itookapicture/.json?limit=3&show=all`,
     fetcher
-  );
-  if (error) return <div>Failed to load</div>;
-  if (!data) return <div>loading subreddit...</div>;
+  )
+  if (error) return <div>Failed to load</div>
+  if (!data) return <div>loading subreddit...</div>
   return (
     <>
       <h1>Basic Example</h1>
@@ -24,20 +24,13 @@ export default function IndexPage() {
             <h2>
               <a
                 href={`https://www.reddit.com${post.data.permalink}`}
-                dangerouslySetInnerHTML={{ __html: post.data.title }}
+                dangerouslySetInnerHTML={{__html: post.data.title}}
               />
             </h2>
             <img src={post.data.thumbnail} alt={post.data.title} />
           </div>
         ))}
       </div>
-      <style jsx>
-        {`
-          .example-content {
-            border-top: 1px solid #000;
-          }
-        `}
-      </style>
     </>
-  );
+  )
 }
