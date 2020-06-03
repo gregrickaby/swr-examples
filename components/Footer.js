@@ -1,5 +1,21 @@
 const Footer = () => (
-  <footer>
+  <footer className="container flex flex-col mt-8 space-y-4 text-center justify-center items-center">
+    <p className="text-sm">
+      <em>
+        *Due to{' '}
+        <a
+          className="underline"
+          href="https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS"
+        >
+          CORS
+        </a>{' '}
+        issues, you may need to{' '}
+        <a href="/disable-firefox-tracking-protection.png">
+          disable Firefox Tracking Protection
+        </a>{' '}
+        and/or any AdBlockers to view examples.
+      </em>
+    </p>
     <a
       href="https://github.com/gregrickaby/swr-examples"
       target="_blank"

@@ -1,6 +1,6 @@
 import useSWR from 'swr'
 
-const fetcher = (url) => fetch(url).then((r) => r.json())
+const fetcher = (url) => fetch(url).then((r) => r.json()) // eslint-disable-line no-undef
 
 export default function IndexPage() {
   const {data, error} = useSWR(
@@ -11,13 +11,6 @@ export default function IndexPage() {
   if (!data) return <div>loading subreddit...</div>
   return (
     <>
-      <h1>Basic Example</h1>
-      <a href="https://codesandbox.io/s/github/gregrickaby/swr-examples/tree/master/?autoresize=1&fontsize=14&hidenavigation=1&initialpath=%2Fbasic-example&module=%2Fpages%2Fbasic-example.js&moduleview=1&theme=dark">
-        <img
-          alt="Edit gregrickaby/swr-examples"
-          src="https://codesandbox.io/static/img/play-codesandbox.svg"
-        />
-      </a>
       <div className="example-content">
         {data.data.children.map((post, index) => (
           <div key={index}>

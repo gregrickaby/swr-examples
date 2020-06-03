@@ -1,44 +1,25 @@
-import Link from 'next/link'
+import SiteHead from '@/components/SiteHead'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 
-export default function Home() {
-  return (
-    <div className="container">
-      <Header />
-      <main>
-        <h1 className="title">SWR Examples</h1>
+const Home = () => (
+  <>
+    <SiteHead />
+    <Header />
+    <main className="container">
+      <div className="example">
+        <h2 className="text-2xl mb-2">Basic Example</h2>
+        <iframe
+          src="https://codesandbox.io/embed/github/gregrickaby/swr-examples/tree/master/?autoresize=1&fontsize=14&hidenavigation=1&initialpath=%2Fbasic-example&module=%2Fpages%2Fbasic-example.js&moduleview=1&theme=dark"
+          className="iframe"
+          title="gregrickaby/swr-examples"
+          allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
+          sandbox="allow-autoplay allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
+        />
+      </div>
+    </main>
+    <Footer />
+  </>
+)
 
-        <p className="description">
-          <a href="https://swr.now.sh/">SWR</a> is a React Hooks library for
-          remote data fetching.
-        </p>
-
-        <div className="grid">
-          <Link href="/basic-example">
-            <a className="card">
-              <h3>Basic Example &rarr;</h3>
-              <p>Fetch some data from the Reddit API.</p>
-            </a>
-          </Link>
-        </div>
-
-        <p>
-          <em>
-            *Due to{' '}
-            <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS">
-              CORS
-            </a>{' '}
-            issues, you may need to{' '}
-            <a href="/disable-firefox-tracking-protection.png">
-              disable Firefox Tracking Protection
-            </a>{' '}
-            and/or any AdBlockers to view examples.
-          </em>
-        </p>
-      </main>
-
-      <Footer />
-    </div>
-  )
-}
+export default Home
