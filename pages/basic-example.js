@@ -12,6 +12,10 @@ export default function IndexPage() {
   return (
     <>
       <h1>Reddit Viewer</h1>
+      💻{" "}
+      <a href="https://github.com/gregrickaby/swr-examples/blob/master/pages/basic-example.js">
+        View source code on Github
+      </a>
       {data.data.children.map((post, index) => (
         <div key={index}>
           <h2>
