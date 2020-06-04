@@ -19,7 +19,6 @@ const ExampleGraphQL = () => {
 
   if (error) return <div>failed to load</div>;
   if (!data) return <div>loading...</div>;
-
   return <pre>{JSON.stringify(data, null, 2)}</pre>;
 };
 
