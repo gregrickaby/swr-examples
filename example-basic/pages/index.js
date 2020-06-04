@@ -1,29 +1,15 @@
 import useSWR from "swr";
 
-const fetcher = (url) => fetch(url).then((r) => r.json()); // eslint-disable-line no-undef
+const fetcher = (url) => fetch(url).then((r) => r.json());
 
 const ExampleBasic = () => {
   const { data, error } = useSWR(
-    `https://www.reddit.com/r/itookapicture/.json?limit=8&show=all`,
+    `https://www.reddit.com/r/itookapicture/.json?limit=2&show=all`,
     fetcher
   );
   if (error) return <div>failed to load</div>;
   if (!data) return <div>loading...</div>;
-  return (
-    <>
-      {data.data.children.map((post, index) => (
-        <div key={index}>
-          <h2>
-            <a
-              href={`https://www.reddit.com${post.data.permalink}`}
-              dangerouslySetInnerHTML={{ __html: post.data.title }}
-            />
-          </h2>
-          <img src={post.data.thumbnail} alt={post.data.title} />
-        </div>
-      ))}
-    </>
-  );
+  return <pre>{JSON.stringify(data, null, 2)}</pre>;
 };
 
 export default ExampleBasic;
