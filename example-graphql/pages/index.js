@@ -1,17 +1,15 @@
 import { request } from "graphql-request";
 import useSWR from "swr";
 
-const API = "https://api.graph.cool/simple/v1/movies";
+const API = "https://graphql-pokemon.now.sh";
 const fetcher = (query) => request(API, query);
 
 const ExampleGraphQL = () => {
   const { data, error } = useSWR(
     `{
-      Movie(title: "Inception") {
-        releaseDate
-        actors {
-          name
-        }
+      pokemon(name: "Pikachu") {
+        name
+        image
       }
     }`,
     fetcher
