@@ -23,3 +23,7 @@ const Profile = () => {
 
 export default Profile;
 ```
+
+[![Edit gregrickaby/swr-examples: example-basic](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/github/gregrickaby/swr-examples/tree/master/example-basic?fontsize=14&hidenavigation=1&theme=dark)
+
+----
