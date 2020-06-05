@@ -1,8 +1,7 @@
 import { request } from "graphql-request";
 import useSWR from "swr";
 
-const API = "https://graphql-pokemon.now.sh";
-const fetcher = (query) => request(API, query);
+const fetcher = (query) => request(`https://graphql-pokemon.now.sh`, query);
 
 const Example = () => {
   const { data, error } = useSWR(
