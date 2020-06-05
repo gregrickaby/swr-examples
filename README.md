@@ -124,7 +124,9 @@ export default Example;
 
 When using `react@experimental`, you can load a `<Suspense>` component that waits for _and_ displays a loading state (like a spinner) until all the data has loaded in the background.
 
-By passing `{ suspense: true }` into SWR's `options`, you can leverage [React Suspense](https://reactjs.org/docs/concurrent-mode-suspense.html) for data fetching:
+By passing `{ suspense: true }` into SWR's `options`, you can leverage [React Suspense](https://reactjs.org/docs/concurrent-mode-suspense.html) for data fetching. 
+
+In this example, let's fetch another person from the [SWAPI](https://swapi.dev/), and display `loading...` why we wait:
 
 ```js
 import { Suspense } from "react";
