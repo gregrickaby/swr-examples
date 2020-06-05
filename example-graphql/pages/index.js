@@ -4,7 +4,7 @@ import useSWR from "swr";
 const API = "https://graphql-pokemon.now.sh";
 const fetcher = (query) => request(API, query);
 
-const ExampleGraphQL = () => {
+const Example = () => {
   const { data, error } = useSWR(
     `{
       pokemon(name: "Pikachu") {
@@ -20,4 +20,4 @@ const ExampleGraphQL = () => {
   return <pre>{JSON.stringify(data, null, 2)}</pre>;
 };
 
-export default ExampleGraphQL;
+export default Example;

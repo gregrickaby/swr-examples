@@ -2,7 +2,7 @@ import useSWR from "swr";
 
 const fetcher = (url) => fetch(url).then((r) => r.json());
 
-const ExampleBasic = () => {
+const Example = () => {
   const { data, error } = useSWR(`https://swapi.dev/api/people/1/`, fetcher);
 
   if (error) return <div>failed to load</div>;
@@ -10,4 +10,4 @@ const ExampleBasic = () => {
   return <pre>{JSON.stringify(data, null, 2)}</pre>;
 };
 
-export default ExampleBasic;
+export default Example;
