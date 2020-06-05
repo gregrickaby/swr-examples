@@ -1,0 +1,16 @@
+{
+  "name": "example-react-suspense",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "build": "next build",
+    "dev": "next dev",
+    "start": "next start"
+  },
+  "dependencies": {
+    "next": "latest",
+    "react": "^0.0.0-experimental-33c3af284",
+    "react-dom": "^0.0.0-experimental-33c3af284",
+    "swr": "^0.2.2"
+  }
+}
