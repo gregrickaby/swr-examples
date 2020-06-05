@@ -1,6 +1,6 @@
 # SWR Examples
 
-[SWR](https://swr.now.sh/) is an awesome React Hooks library for remote data fetching, maintained by [Vercel](https://vercel.com).
+[SWR](https://swr.now.sh/) is an awesome [React Hooks](https://reactjs.org/docs/hooks-intro.html) library for remote data fetching, maintained by [Vercel](https://vercel.com).
 
 [![Edit gregrickaby/swr-examples](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/github/gregrickaby/swr-examples/tree/master/?fontsize=14&hidenavigation=1&theme=dark)
 
