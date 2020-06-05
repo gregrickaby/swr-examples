@@ -26,7 +26,7 @@ Before jumping in, take a minute to read the following:
 
 First, all examples run on [Next.js](https://nextjs.org/), which has built-in support for both React and [Fetch](https://nextjs.org/blog/next-9-4#improved-built-in-fetch-support). If you do copy/paste these examples into something like Create React App, you'll probably need to install and import those dependencies first.
 
-Secondly, all examples use `JSON.stringify` to display the fetched data. I didn't want to overcomplicate things, with opinionated markup around displaying data.
+Secondly, all examples use `JSON.stringify` to display the fetched data. I didn't want to overcomplicate things with opinionated markup around displaying data.
 
 And finally, the `fetcher` below, is a quick one-liner for example purposes. I wouldn't use this one-liner for a complex app.
 
