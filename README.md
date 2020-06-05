@@ -1,6 +1,6 @@
 # SWR Examples
 
-[SWR](https://swr.now.sh/) is an awesome React Hooks library for remote data fetching maintained by [Vercel](https://vercel.com).
+[SWR](https://swr.now.sh/) is an awesome React Hooks library for remote data fetching, maintained by [Vercel](https://vercel.com).
 
 **Why this repo?**
 
@@ -24,7 +24,7 @@ Before jumping in, take a minute to read the following:
 
 ## Preface
 
-First, all examples run on [Next.js](https://nextjs.org/), which has built-in support for both React and [Fetch](https://nextjs.org/blog/next-9-4#improved-built-in-fetch-support). If you do copy/paste these examples into something like Create React App, you'll probably need to install and import those dependencies first. 
+First, all examples run on [Next.js](https://nextjs.org/), which has built-in support for both React and [Fetch](https://nextjs.org/blog/next-9-4#improved-built-in-fetch-support). If you do copy/paste these examples into something like Create React App, you'll probably need to install and import those dependencies first.
 
 Secondly, all examples use `JSON.stringify` to show the fetched data. I didn't want to overcomplicate things, with opinionated markup around displaying data.
 
@@ -35,7 +35,6 @@ const fetcher = (url) => fetch(url).then((r) => r.json());
 ```
 
 **SWR accepts any library to handle data fetching**, so you could totally use a battle tested library like [Axios](https://github.com/axios/axios) instead.
-
 
 ## The `useSWR()` API
 
