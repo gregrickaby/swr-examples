@@ -150,4 +150,4 @@ export default Example;
 
 ---
 
-More examples soon...In the meantime, learn more about SWR and see all the examples on [Github](https://github.com/vercel/swr). 🍻
+More examples soon...In the meantime, learn more about SWR and see all the examples on [Github](https://github.com/vercel/swr). 👋🏻
