@@ -34,7 +34,7 @@ And finally, the `fetcher` below, is a quick one-liner for example purposes:
 const fetcher = (url) => fetch(url).then((r) => r.json());
 ```
 
-**SWR accepts any library to handle data fetching**, so you could totally use a battle tested library like [Axios](https://github.com/axios/axios) instead.
+**SWR accepts any Promise based function or library to handle data fetching.** That means you could totally use something more robust like [Axios](https://github.com/axios/axios).
 
 ## The `useSWR()` API
 
