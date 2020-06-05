@@ -24,17 +24,18 @@ Before jumping in, take a minute to read the following:
 
 ## Preface
 
-All examples run on [Next.js](https://nextjs.org/), which has built-in support for both React and [Fetch](https://nextjs.org/blog/next-9-4#improved-built-in-fetch-support). If you do copy/paste these examples into something like Create React App, you'll probably need to install and import those dependencies first.
+First, all examples run on [Next.js](https://nextjs.org/), which has built-in support for both React and [Fetch](https://nextjs.org/blog/next-9-4#improved-built-in-fetch-support). If you do copy/paste these examples into something like Create React App, you'll probably need to install and import those dependencies first. 
 
-The `fetcher` below, is a quick one-liner for example purposes. 
+Secondly, all examples use `JSON.stringify` to show the fetched data. I didn't want to overcomplicate things, with opinionated markup around displaying data.
+
+And finally, the `fetcher` below, is a quick one-liner for example purposes:
 
 ```js
 const fetcher = (url) => fetch(url).then((r) => r.json());
 ```
 
-**SWR accepts any library to handle data fetching**. You could totally use a battle tested library like [Axios](https://github.com/axios/axios) instead.
+**SWR accepts any library to handle data fetching**, so you could totally use a battle tested library like [Axios](https://github.com/axios/axios) instead.
 
-For brevity, all examples use `JSON.stringify` to show the fetched data. I didn't want to overcomplicate things, with opinionated markup around displaying data.
 
 ## The `useSWR()` API
 
