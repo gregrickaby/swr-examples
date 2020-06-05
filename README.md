@@ -30,7 +30,7 @@ First, all examples run on [Next.js](https://nextjs.org/), which has built-in su
 
 Secondly, all examples use `JSON.stringify` to display the fetched data. I didn't want to overcomplicate things with opinionated markup around displaying data.
 
-And finally, the `fetcher` below, is a quick one-liner for example purposes. I wouldn't use this on a complex project.
+And finally, the `fetcher` below, is a quick one-liner for example purposes. _I wouldn't use this on a complex project._
 
 ```js
 const fetcher = (url) => fetch(url).then((r) => r.json());
@@ -122,7 +122,7 @@ export default Example;
 
 ## React Suspense (Experimental)
 
-When using `react@experimental`, you can load a `<Suspense>` component that both waits for _and_ displays a loading state (like a spinner) until all the data loads in the background.
+When using `react@experimental`, you can load a `<Suspense>` component that waits for _and_ displays a loading state (like a spinner) until all the data has loaded in the background.
 
 By passing `{ suspense: true }` into SWR's `options`, you can leverage [React Suspense](https://reactjs.org/docs/concurrent-mode-suspense.html) for data fetching:
 
