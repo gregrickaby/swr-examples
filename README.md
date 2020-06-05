@@ -33,6 +33,7 @@ And finally, the `fetcher` below, is a quick one-liner for example purposes. I w
 ```js
 const fetcher = (url) => fetch(url).then((r) => r.json());
 ```
+
 Onward!
 
 ## The `useSWR()` API
@@ -92,8 +93,7 @@ In this example, let's use the [graph-request](https://www.npmjs.com/package/gra
 import { request } from "graphql-request";
 import useSWR from "swr";
 
-const API = "https://graphql-pokemon.now.sh";
-const fetcher = (query) => request(API, query);
+const fetcher = (query) => request(`https://graphql-pokemon.now.sh`, query);
 
 const Example = () => {
   const { data, error } = useSWR(
