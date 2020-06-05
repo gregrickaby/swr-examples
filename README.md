@@ -28,12 +28,12 @@ First, all examples run on [Next.js](https://nextjs.org/), which has built-in su
 
 Secondly, all examples use `JSON.stringify` to display the fetched data. I didn't want to overcomplicate things with opinionated markup around displaying data.
 
-And finally, the `fetcher` below, is a quick one-liner for example purposes. I wouldn't use this one-liner for a complex app.
+And finally, the `fetcher` below, is a quick one-liner for example purposes. I wouldn't use this on a complex project.
 
 ```js
 const fetcher = (url) => fetch(url).then((r) => r.json());
 ```
-
+Onward!
 
 ## The `useSWR()` API
 
