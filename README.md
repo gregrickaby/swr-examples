@@ -1,8 +1,15 @@
 # SWR Examples
 
-[SWR](https://swr.now.sh/) is a React Hooks library for remote data fetching. Learn more on [Github](https://github.com/vercel/swr). Here are some examples that you can copy and paste.
+[SWR](https://swr.now.sh/) is an awesome React Hooks library for remote data fetching maintained by [Vercel](https://vercel.com).
+
+The examples listed on the SWR website (and Github) are great, but as a junior JavaScript developer, I struggled a little. Many of the examples assumed I was a 10x developer. 😕
+
+I put this repo together with examples that you can copy & paste into your project and they should work. 🤞
+
+Learn more about SWR and see all the examples on [Github](https://github.com/vercel/swr). 🍻
 
 ### Table of Contents
+
 - [Introduction](#introduction)
   - [Preface](#preface)
   - [The `useSWR()` API](#the-useswr-api)
