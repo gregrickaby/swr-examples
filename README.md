@@ -6,7 +6,7 @@
 
 **Why this repo?**
 
-The examples listed on the SWR website (and Github) are great, but as a Junior JavaScript developer, I struggled to understand a few of them, so I put this repo together in hopes that it will help others. 🍻
+The examples listed on the SWR website (and Github) are great, but for brevity, the examples omit small bits and don't actually "do anything". I struggled to understand a few of them, so I put this repo together in hopes that it will help others. 🍻
 
 ### Table of Contents
 
@@ -20,7 +20,7 @@ The examples listed on the SWR website (and Github) are great, but as a Junior J
   - [GraphQL](#graphql)
   - [React Suspense (Experimental)](#react-suspense-experimental)
   - [Dependent Fetching](#dependent-fetching)
- 
+
 # Introduction
 
 Before jumping in, take a minute to read the following:
@@ -185,6 +185,6 @@ const Example = () => {
 export default Example;
 ```
 
-## [![Edit gregrickaby/swr-examples: example-dependent-fetching](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/github/gregrickaby/swr-examples/tree/master/example-dependent-fetching?fontsize=14&hidenavigation=1&theme=dark)
+[![Edit gregrickaby/swr-examples: example-dependent-fetching](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/github/gregrickaby/swr-examples/tree/master/example-dependent-fetching?fontsize=14&hidenavigation=1&theme=dark)
 
 More examples soon...In the meantime, learn more about SWR and see all the examples on [Github](https://github.com/vercel/swr). 👋🏻
