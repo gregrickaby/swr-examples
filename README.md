@@ -19,7 +19,8 @@ The examples listed on the SWR website (and Github) are great, but as a Junior J
   - [Basic Example](#basic-example)
   - [GraphQL](#graphql)
   - [React Suspense (Experimental)](#react-suspense-experimental)
-
+  - [Dependent Fetching](#dependent-fetching)
+ 
 # Introduction
 
 Before jumping in, take a minute to read the following:
@@ -87,7 +88,7 @@ export default Example;
 
 ## GraphQL
 
-What's really cool about `SWR`, is you're not restricted to just using `fetch` for REST APIs. You can define _any asynchronous function or library_ as the `fetcher`!
+What's really cool about SWR, is you're not restricted to just using `fetch` for REST APIs. You can define _any asynchronous function or library_ as the `fetcher`!
 
 In this example, let's use the [graph-request](https://www.npmjs.com/package/graphql-request) library to query and display data for _Pikachu_:
 
@@ -148,8 +149,42 @@ const Example = () => (
 export default Example;
 ```
 
-[![Edit gregrickaby/swr-examples: example-graphql](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/github/gregrickaby/swr-examples/tree/master/example-react-suspense?fontsize=14&hidenavigation=1&theme=dark)
+[![Edit gregrickaby/swr-examples: example-react-suspense](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/github/gregrickaby/swr-examples/tree/master/example-react-suspense?fontsize=14&hidenavigation=1&theme=dark)
 
 ---
+
+## Dependent Fetching
+
+SWR allows you to fetch data that depends on other data, as well as serial fetching when a piece of dynamic data is required for the next data fetch to happen.
+
+In this example, we're going to query a WordPress blog post, then pluck a tag, and display the tag to the user.
+
+```js
+import useSWR from "swr";
+
+const fetcher = (url) => fetch(url).then((r) => r.json());
+
+const Example = () => {
+  // First, fetch a blog post...
+  const { data: post } = useSWR(
+    `https://webdevstudios.com/wp-json/wp/v2/posts/22342`,
+    fetcher
+  );
+
+  // Then, fetch a tag from the blog post.
+  const { data: tag } = useSWR(
+    () => `https://webdevstudios.com/wp-json/wp/v2/tags/${post.tags[1]}`,
+    fetcher
+  );
+
+  if (!tag) return "loading...";
+
+  return <pre>{JSON.stringify(tag.name, null, 2)}</pre>;
+};
+
+export default Example;
+```
+
+## [![Edit gregrickaby/swr-examples: example-dependent-fetching](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/github/gregrickaby/swr-examples/tree/master/example-dependent-fetching?fontsize=14&hidenavigation=1&theme=dark)
 
 More examples soon...In the meantime, learn more about SWR and see all the examples on [Github](https://github.com/vercel/swr). 👋🏻
