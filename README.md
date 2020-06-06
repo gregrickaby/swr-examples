@@ -1,12 +1,12 @@
 # SWR Examples
 
-[SWR](https://swr.now.sh/) is an awesome [React Hooks](https://reactjs.org/docs/hooks-intro.html) library for remote data fetching, maintained by [Vercel](https://vercel.com).
+[SWR](https://swr.now.sh/) is an awesome [React Hooks](https://reactjs.org/docs/hooks-intro.html) for remote data fetching, maintained by [Vercel](https://vercel.com).
 
 [![Edit gregrickaby/swr-examples](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/github/gregrickaby/swr-examples/tree/master/?fontsize=14&hidenavigation=1&theme=dark)
 
 **Why this repo?**
 
-The examples listed on the SWR website (and Github) are great, but for brevity, the examples omit small bits and don't actually "do anything". I struggled to understand a few of them, so I put this repo together in hopes that it will help others. 🍻
+The examples listed on the SWR website (and Github) are great, but for brevity, the examples omit small bits and don't actually "do anything". I struggled to understand a few of them, so I put this repo together to further my understanding, and I hope that it will help others. 🍻
 
 ### Table of Contents
 
@@ -20,6 +20,7 @@ The examples listed on the SWR website (and Github) are great, but for brevity, 
   - [GraphQL](#graphql)
   - [React Suspense (Experimental)](#react-suspense-experimental)
   - [Dependent Fetching](#dependent-fetching)
+  - [Conditional Fetching](#conditional-fetching)
 
 # Introduction
 
@@ -29,9 +30,9 @@ Before jumping in, take a minute to read the following:
 
 First, all examples run on [Next.js](https://nextjs.org/), which has built-in support for both React and [Fetch](https://nextjs.org/blog/next-9-4#improved-built-in-fetch-support). If you do copy/paste these examples into something like Create React App, you'll probably need to install and import those dependencies first.
 
-Secondly, all examples use `JSON.stringify` to display the fetched data. I didn't want to overcomplicate things with opinionated markup around displaying data.
+Second, all examples use `JSON.stringify` to display the fetched data. I didn't want to overcomplicate things with opinionated markup around displaying data.
 
-And finally, the `fetcher` below, is a quick one-liner for example purposes. _I wouldn't use this on a complex project._
+And finally, the `fetcher` below, is a quick one-liner used for example purposes throughout this repo. _I wouldn't use this on a complex project._
 
 ```js
 const fetcher = (url) => fetch(url).then((r) => r.json());
@@ -49,7 +50,7 @@ const { data, error, isValidating, mutate } = useSWR(key, fetcher, options);
 
 ### Parameters
 
-- `key`: A unique string for the request. Usually the URL of an API. ([advanced usage](https://github.com/vercel/swr#conditional-fetching))
+- `key`: A unique string (or function / array / null) for the request. Usually the URL of an API. ([advanced usage](https://github.com/vercel/swr#conditional-fetching))
 - `fetcher`: (optional) _Any_ Promise returning function or library to fetch your data. ([details](https://github.com/vercel/swr#data-fetching))
 - `options`: (optional) An object of options for this SWR hook. ([view all options](https://github.com/vercel/swr#options))
 
@@ -186,5 +187,48 @@ export default Example;
 ```
 
 [![Edit gregrickaby/swr-examples: example-dependent-fetching](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/github/gregrickaby/swr-examples/tree/master/example-dependent-fetching?fontsize=14&hidenavigation=1&theme=dark)
+
+---
+
+## Conditional Fetching
+
+You can use a ternary operator in the `key` parameter to conditionally fetch data.
+
+In this example, I use both the `useState()` and `useEffect()` hooks, along with `setTimeout()` to delay loading the data.
+
+```js
+import { useState, useEffect } from "react";
+import useSWR from "swr";
+
+const fetcher = (url) => fetch(url).then((r) => r.json());
+
+const Example = () => {
+  // Set "sleeping" to true.
+  const [sleeping, setSleeping] = useState(true);
+
+  // Do not fetch until sleeping is false.
+  const { data, error } = useSWR(
+    sleeping ? null : `https://swapi.dev/api/people/1/`,
+    fetcher
+  );
+
+  // After 3 seconds, setSleeping to false.
+  useEffect(() => {
+    setTimeout(() => {
+      setSleeping(false);
+    }, 3000);
+  }, []);
+
+  if (error) return <div>failed to load</div>;
+  if (!data) return <div>loading in 3 seconds...</div>;
+  return <pre>{JSON.stringify(data, null, 2)}</pre>;
+};
+
+export default Example;
+```
+
+[![Edit gregrickaby/swr-examples: example-conditional-fetching](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/github/gregrickaby/swr-examples/tree/master/example-conditional-fetching?fontsize=14&hidenavigation=1&theme=dark)
+
+---
 
 More examples soon...In the meantime, learn more about SWR and see all the examples on [Github](https://github.com/vercel/swr). 👋🏻
