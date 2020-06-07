@@ -19,7 +19,7 @@
 
 # Introduction
 
-The examples listed on the [SWR website](https://swr.now.sh/) and [Github](https://github.com/vercel/swr/tree/master/examples) are great, but for brevity, some of the them omit small bits and don't actually "do anything"; while other examples feel overly complex and assume we're all "10x devs". I put this repo together to teach myself how to use SWR, and I hope that these simplistic examples will help others. 🍻
+The examples listed on the [SWR website](https://swr.now.sh/) and [Github](https://github.com/vercel/swr/tree/master/examples) are great, but for brevity, some of the them omit small bits and don't actually "do anything"; while other examples feel overly complex and assume we're all "10x developers". I put together this repo to teach myself how to use SWR, and I hope that these simplistic examples will help others. 🍻
 
 **Before jumping in, take a minute to read the following:**
 
@@ -27,7 +27,7 @@ The examples listed on the [SWR website](https://swr.now.sh/) and [Github](https
 
 First, all the examples in this repo run on [Next.js](https://nextjs.org/), which is _one of two_ [recommended metaframeworks](https://reactjs.org/docs/create-a-new-react-app.html#recommended-**toolchains**) by the React core team. Next.js has built-in support for [Fetch](https://nextjs.org/blog/next-9-4#improved-built-in-fetch-support), so you don't have to install a fetch library as a dependency. Just know, _if you do copy/paste these examples into something like Create React App, you'll need to install and import a fetch library first._
 
-Second, all examples use `JSON.stringify` to display the fetched data. I didn't want to overcomplicate things with opinionated markup about displaying data. Chances are, you just need to `.map()` over the fetched data like this:
+Second, all examples use `JSON.stringify()` to display the fetched data. I didn't want to overcomplicate things with opinionated markup about displaying data. Chances are, you just need to `.map()` over the fetched data like this:
 
 ```js
 return (
@@ -39,7 +39,7 @@ return (
 );
 ```
 
-And finally, the `fetcher` below, is a quick one-liner used for example purposes throughout this repo. _I wouldn't use this on a complex project._
+And finally, the `fetcher()` below, is a quick one-liner used for example purposes throughout this repo. _I wouldn't use this on a complex project._
 
 ```js
 const fetcher = (url) => fetch(url).then((r) => r.json());
@@ -47,7 +47,7 @@ const fetcher = (url) => fetch(url).then((r) => r.json());
 
 Engage...
 
-## The `useSWR()` API
+## The API
 
 Here is the full `useSWR()` hook:
 
@@ -96,7 +96,7 @@ export default Example;
 
 ## Axios
 
-Know what's cool about SWR? You're not restricted to just using `fetch` to grab data from REST APIs. You can define _any asynchronous function or library_ as the `fetcher`!
+Know what's cool about SWR? You're not restricted to just using `fetch` to grab data from REST APIs. You can define _any asynchronous function or library_ as the `fetcher()`!
 
 In this example, we'll use the tried and true data fetching library, [Axios](https://github.com/axios/axios) to fetch a person from the [SWAPI](https://swapi.dev/):
 
@@ -123,7 +123,7 @@ export default Example;
 
 ## GraphQL
 
-SWR is fetching library agnostic, so just like with the Axios example, let's use another third-party library to fetch data. In this example, we'll use the [graph-request](https://www.npmjs.com/package/graphql-request) library to query a [GraphQL](https://graphql.org/) endpoint and display data for _Pikachu_:
+Since SWR is fetching library agnostic, let's use another third-party library to fetch data. In this example, we'll use the [graph-request](https://www.npmjs.com/package/graphql-request) library, to query a [GraphQL](https://graphql.org/) endpoint, and display data for _Pikachu_:
 
 ```js
 import { request } from "graphql-request";
