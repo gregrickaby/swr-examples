@@ -39,7 +39,7 @@ return (
 );
 ```
 
-And finally, the `fetcher()` below, is a quick one-liner used for example purposes throughout this repo. _I wouldn't use this on a complex project._
+And finally, SWR needs _something_ to actually fetch data. The `fetcher()` function below, is a quick one-liner used for example purposes throughout this repo. _I wouldn't use this on a complex project._
 
 ```js
 const fetcher = (url) => fetch(url).then((r) => r.json());
