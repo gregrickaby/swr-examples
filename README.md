@@ -6,16 +6,16 @@
 
 - [Introduction](#introduction)
   - [Preface](#preface)
-  - [The useSWR() API](#the-useswr-api)
+  - [The API](#the-api)
     - [Parameters](#parameters)
     - [Return Values](#return-values)
 - [Examples](#examples)
-  - [Basic Example](#basic-example)
-  - [With Axios](#with-axios)
+  - [Basic Example with `fetch()`](#basic-example-with-fetch)
+  - [Axios](#axios)
   - [GraphQL](#graphql)
-  - [React Suspense (Experimental)](#react-suspense-experimental)
   - [Dependent Fetching](#dependent-fetching)
   - [Conditional Fetching](#conditional-fetching)
+  - [React Suspense (Experimental)](#react-suspense-experimental)
 
 # Introduction
 
@@ -70,7 +70,7 @@ const { data, error, isValidating, mutate } = useSWR(key, fetcher, options);
 
 # Examples
 
-## Basic Example
+## Basic Example with `fetch()`
 
 In the basic example, let's fetch a person from the [SWAPI](https://swapi.dev/):
 
@@ -96,7 +96,7 @@ export default Example;
 
 ## Axios
 
-Know what's cool about SWR? You're not restricted to just using `fetch` to grab data from REST APIs. You can define _any asynchronous function or library_ as the `fetcher()`!
+Know what's cool about SWR? You're not restricted to just using `fetch()` to grab data from REST APIs. You can define _any asynchronous function or library_ as the `fetcher()`!
 
 In this example, we'll use the tried and true data fetching library, [Axios](https://github.com/axios/axios) to fetch a person from the [SWAPI](https://swapi.dev/):
 
