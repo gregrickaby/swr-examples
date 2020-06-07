@@ -1,22 +1,17 @@
 # SWR Examples
 
-[SWR](https://swr.now.sh/) is an awesome [React Hooks](https://reactjs.org/docs/hooks-intro.html) for remote data fetching, maintained by [Vercel](https://vercel.com).
-
-[![Edit gregrickaby/swr-examples](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/github/gregrickaby/swr-examples/tree/master/?fontsize=14&hidenavigation=1&theme=dark)
-
-**Why this repo?**
-
-The examples listed on the SWR website (and Github) are great, but for brevity, the examples omit small bits and don't actually "do anything". I struggled to understand a few of them, so I put this repo together to further my understanding, and I hope that it will help others. 🍻
+[SWR](https://swr.now.sh/) is an awesome [React Hook](https://reactjs.org/docs/hooks-intro.html) library for remote data fetching, maintained by the team at [Vercel](https://vercel.com). SWR stands for "[stale-while-revalidating](https://tools.ietf.org/html/rfc5861)", which means, SWR will load cached data (stale) first, and then fetch new data (revalidate) in the background.
 
 ### Table of Contents
 
 - [Introduction](#introduction)
   - [Preface](#preface)
-  - [The `useSWR()` API](#the-useswr-api)
+  - [The useSWR() API](#the-useswr-api)
     - [Parameters](#parameters)
     - [Return Values](#return-values)
 - [Examples](#examples)
   - [Basic Example](#basic-example)
+  - [With Axios](#with-axios)
   - [GraphQL](#graphql)
   - [React Suspense (Experimental)](#react-suspense-experimental)
   - [Dependent Fetching](#dependent-fetching)
@@ -24,13 +19,25 @@ The examples listed on the SWR website (and Github) are great, but for brevity, 
 
 # Introduction
 
-Before jumping in, take a minute to read the following:
+The examples listed on the [SWR website](https://swr.now.sh/) and [Github](https://github.com/vercel/swr/tree/master/examples) are great, but for brevity, some of the them omit small bits and don't actually "do anything"; while other examples feel overly complex and assume we're all "10x devs". I put this repo together to teach myself how to use SWR, and I hope that these simplistic examples will help others. 🍻
+
+**Before jumping in, take a minute to read the following:**
 
 ## Preface
 
-First, all examples run on [Next.js](https://nextjs.org/), which has built-in support for both React and [Fetch](https://nextjs.org/blog/next-9-4#improved-built-in-fetch-support). If you do copy/paste these examples into something like Create React App, you'll probably need to install and import those dependencies first.
+First, all the examples in this repo run on [Next.js](https://nextjs.org/), which is _one of two_ [recommended metaframeworks](https://reactjs.org/docs/create-a-new-react-app.html#recommended-**toolchains**) by the React core team. Next.js has built-in support for [Fetch](https://nextjs.org/blog/next-9-4#improved-built-in-fetch-support), so you don't have to install a fetch library as a dependency. Just know, _if you do copy/paste these examples into something like Create React App, you'll need to install and import a fetch library first._
 
-Second, all examples use `JSON.stringify` to display the fetched data. I didn't want to overcomplicate things with opinionated markup around displaying data.
+Second, all examples use `JSON.stringify` to display the fetched data. I didn't want to overcomplicate things with opinionated markup about displaying data. Chances are, you just need to `.map()` over the fetched data like this:
+
+```js
+return (
+  <>
+    {data.items.map((item, index) => (
+      <div key={index}>{item.title}</div>
+    ))}
+  </>
+);
+```
 
 And finally, the `fetcher` below, is a quick one-liner used for example purposes throughout this repo. _I wouldn't use this on a complex project._
 
@@ -38,7 +45,7 @@ And finally, the `fetcher` below, is a quick one-liner used for example purposes
 const fetcher = (url) => fetch(url).then((r) => r.json());
 ```
 
-Onward!
+Engage...
 
 ## The `useSWR()` API
 
@@ -87,11 +94,36 @@ export default Example;
 
 ---
 
+## Axios
+
+Know what's cool about SWR? You're not restricted to just using `fetch` to grab data from REST APIs. You can define _any asynchronous function or library_ as the `fetcher`!
+
+In this example, we'll use the tried and true data fetching library, [Axios](https://github.com/axios/axios) to fetch a person from the [SWAPI](https://swapi.dev/):
+
+```js
+import useSWR from "swr";
+import axios from "axios";
+
+const fetcher = (url) => axios.get(url);
+
+const Example = () => {
+  const { data, error } = useSWR(`https://swapi.dev/api/people/1/`, fetcher);
+
+  if (error) return <div>failed to load</div>;
+  if (!data) return <div>loading...</div>;
+  return <pre>{JSON.stringify(data, null, 2)}</pre>;
+};
+
+export default Example;
+```
+
+[![Edit gregrickaby/swr-examples: example-axios](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/github/gregrickaby/swr-examples/tree/master/example-axios?fontsize=14&hidenavigation=1&theme=dark)
+
+---
+
 ## GraphQL
 
-What's really cool about SWR, is you're not restricted to just using `fetch` for REST APIs. You can define _any asynchronous function or library_ as the `fetcher`!
-
-In this example, let's use the [graph-request](https://www.npmjs.com/package/graphql-request) library to query and display data for _Pikachu_:
+SWR is fetching library agnostic, so just like with the Axios example, let's use another third-party library to fetch data. In this example, we'll use the [graph-request](https://www.npmjs.com/package/graphql-request) library to query a [GraphQL](https://graphql.org/) endpoint and display data for _Pikachu_:
 
 ```js
 import { request } from "graphql-request";
@@ -119,38 +151,6 @@ export default Example;
 ```
 
 [![Edit gregrickaby/swr-examples: example-graphql](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/github/gregrickaby/swr-examples/tree/master/example-graphql?fontsize=14&hidenavigation=1&theme=dark)
-
----
-
-## React Suspense (Experimental)
-
-When using `react@experimental`, you can load a `<Suspense>` component that waits for _and_ displays a loading state (like a spinner) until all the data has loaded in the background.
-
-By passing `{ suspense: true }` into SWR's `options`, you can leverage [React Suspense](https://reactjs.org/docs/concurrent-mode-suspense.html) for data fetching. In this example, let's fetch another person from the [SWAPI](https://swapi.dev/), and display `loading...` why we wait:
-
-```js
-import { Suspense } from "react";
-import useSWR from "swr";
-
-const fetcher = (url) => fetch(url).then((r) => r.json());
-
-const Profile = () => {
-  const { data } = useSWR(`https://swapi.dev/api/people/1/`, fetcher, {
-    suspense: true,
-  });
-  return <pre>{JSON.stringify(data, null, 2)}</pre>;
-};
-
-const Example = () => (
-  <Suspense fallback={<div>loading...</div>}>
-    <Profile />
-  </Suspense>
-);
-
-export default Example;
-```
-
-[![Edit gregrickaby/swr-examples: example-react-suspense](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/github/gregrickaby/swr-examples/tree/master/example-react-suspense?fontsize=14&hidenavigation=1&theme=dark)
 
 ---
 
@@ -231,4 +231,36 @@ export default Example;
 
 ---
 
-More examples soon...In the meantime, learn more about SWR and see all the examples on [Github](https://github.com/vercel/swr). 👋🏻
+## React Suspense (Experimental)
+
+When using `react@experimental`, you can load a `<Suspense>` component that waits for _and_ displays a loading state (like a spinner) until all the data has loaded in the background.
+
+By passing `{ suspense: true }` into SWR's `options`, you can leverage [React Suspense](https://reactjs.org/docs/concurrent-mode-suspense.html) for data fetching. In this example, let's fetch another person from the [SWAPI](https://swapi.dev/), and display `loading...` why we wait:
+
+```js
+import { Suspense } from "react";
+import useSWR from "swr";
+
+const fetcher = (url) => fetch(url).then((r) => r.json());
+
+const Profile = () => {
+  const { data } = useSWR(`https://swapi.dev/api/people/1/`, fetcher, {
+    suspense: true,
+  });
+  return <pre>{JSON.stringify(data, null, 2)}</pre>;
+};
+
+const Example = () => (
+  <Suspense fallback={<div>loading...</div>}>
+    <Profile />
+  </Suspense>
+);
+
+export default Example;
+```
+
+[![Edit gregrickaby/swr-examples: example-react-suspense](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/github/gregrickaby/swr-examples/tree/master/example-react-suspense?fontsize=14&hidenavigation=1&theme=dark)
+
+---
+
+Learn more about SWR, and see all the examples on the official [Github](https://github.com/vercel/swr/examples). 👋🏻

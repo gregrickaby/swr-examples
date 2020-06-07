@@ -1,0 +1,17 @@
+{
+  "name": "example-with-axios",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "build": "next build",
+    "dev": "next dev",
+    "start": "next start"
+  },
+  "dependencies": {
+    "axios": "^0.19.2",
+    "next": "latest",
+    "react": "16.13.1",
+    "react-dom": "16.13.1",
+    "swr": "^0.2.2"
+  }
+}
