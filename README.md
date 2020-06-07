@@ -25,7 +25,7 @@ The examples listed on the [SWR website](https://swr.now.sh/) and [Github](https
 
 ## Preface
 
-First, all the examples in this repo run on [Next.js](https://nextjs.org/), which is _one of two_ [recommended metaframeworks](https://reactjs.org/docs/create-a-new-react-app.html#recommended-**toolchains**) by the React core team. Next.js has built-in support for [Fetch](https://nextjs.org/blog/next-9-4#improved-built-in-fetch-support), so you don't have to install a fetch library as a dependency. Just know, _if you do copy/paste these examples into something like Create React App, you'll need to install and import a fetch library first._
+First, all the examples in this repo run on [Next.js](https://nextjs.org/), which is _one of two_ [recommended toolchains](https://reactjs.org/docs/create-a-new-react-app.html#recommended-toolchains) by the React core team. Next.js has built-in support for [Fetch](https://nextjs.org/blog/next-9-4#improved-built-in-fetch-support), so you don't have to install a fetch library as a dependency. Just know, _if you do copy/paste these examples into something like Create React App, you'll need to install and import a fetch library first._
 
 Second, all examples use `JSON.stringify()` to display the fetched data. I didn't want to overcomplicate things with opinionated markup about displaying data. Chances are, you just need to `.map()` over the fetched data like this:
 
