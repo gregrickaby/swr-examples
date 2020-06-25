@@ -1,6 +1,6 @@
 # SWR Examples
 
-[SWR](https://swr.now.sh/) is an awesome [React Hook](https://reactjs.org/docs/hooks-intro.html) library for remote data fetching, maintained by the team at [Vercel](https://vercel.com). SWR stands for "[stale-while-revalidating](https://tools.ietf.org/html/rfc5861)", which means, SWR will attempt to load cached data (stale) first, and then fetch new data (revalidate) in the background. 
+[SWR](https://swr.now.sh/) is an awesome [React Hook](https://reactjs.org/docs/hooks-intro.html) library for remote data fetching, maintained by the team at [Vercel](https://vercel.com). SWR stands for "[stale-while-revalidating](https://tools.ietf.org/html/rfc5861)", which means, SWR will attempt to load cached data (stale) first, and then fetch new data (revalidate) in the background.
 
 ### Table of Contents
 
@@ -79,15 +79,13 @@ import useSWR from "swr";
 
 const fetcher = (url) => fetch(url).then((r) => r.json());
 
-const Example = () => {
+export default function Example() {
   const { data, error } = useSWR(`https://swapi.dev/api/people/1/`, fetcher);
 
   if (error) return <div>failed to load</div>;
   if (!data) return <div>loading...</div>;
   return <pre>{JSON.stringify(data, null, 2)}</pre>;
-};
-
-export default Example;
+}
 ```
 
 [![Edit gregrickaby/swr-examples: example-basic](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/github/gregrickaby/swr-examples/tree/master/example-basic?fontsize=14&hidenavigation=1&theme=dark)
@@ -106,15 +104,13 @@ import axios from "axios";
 
 const fetcher = (url) => axios.get(url);
 
-const Example = () => {
+export default function Example() {
   const { data, error } = useSWR(`https://swapi.dev/api/people/1/`, fetcher);
 
   if (error) return <div>failed to load</div>;
   if (!data) return <div>loading...</div>;
   return <pre>{JSON.stringify(data, null, 2)}</pre>;
-};
-
-export default Example;
+}
 ```
 
 [![Edit gregrickaby/swr-examples: example-axios](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/github/gregrickaby/swr-examples/tree/master/example-axios?fontsize=14&hidenavigation=1&theme=dark)
@@ -131,7 +127,7 @@ import useSWR from "swr";
 
 const fetcher = (query) => request(`https://graphql-pokemon.now.sh`, query);
 
-const Example = () => {
+export default function Example() {
   const { data, error } = useSWR(
     `{
       pokemon(name: "Pikachu") {
@@ -145,9 +141,7 @@ const Example = () => {
   if (error) return <div>failed to load</div>;
   if (!data) return <div>loading...</div>;
   return <pre>{JSON.stringify(data, null, 2)}</pre>;
-};
-
-export default Example;
+}
 ```
 
 [![Edit gregrickaby/swr-examples: example-graphql](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/github/gregrickaby/swr-examples/tree/master/example-graphql?fontsize=14&hidenavigation=1&theme=dark)
@@ -165,7 +159,7 @@ import useSWR from "swr";
 
 const fetcher = (url) => fetch(url).then((r) => r.json());
 
-const Example = () => {
+export default function Example() {
   // First, fetch a blog post...
   const { data: post } = useSWR(
     `https://webdevstudios.com/wp-json/wp/v2/posts/22342`,
@@ -181,9 +175,7 @@ const Example = () => {
   if (!tag) return "loading...";
 
   return <pre>{JSON.stringify(tag.name, null, 2)}</pre>;
-};
-
-export default Example;
+}
 ```
 
 [![Edit gregrickaby/swr-examples: example-dependent-fetching](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/github/gregrickaby/swr-examples/tree/master/example-dependent-fetching?fontsize=14&hidenavigation=1&theme=dark)
@@ -202,7 +194,7 @@ import useSWR from "swr";
 
 const fetcher = (url) => fetch(url).then((r) => r.json());
 
-const Example = () => {
+export default function Example() {
   // Set "sleeping" to true.
   const [sleeping, setSleeping] = useState(true);
 
@@ -222,9 +214,7 @@ const Example = () => {
   if (error) return <div>failed to load</div>;
   if (!data) return <div>loading in 3 seconds...</div>;
   return <pre>{JSON.stringify(data, null, 2)}</pre>;
-};
-
-export default Example;
+}
 ```
 
 [![Edit gregrickaby/swr-examples: example-conditional-fetching](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/github/gregrickaby/swr-examples/tree/master/example-conditional-fetching?fontsize=14&hidenavigation=1&theme=dark)
@@ -243,20 +233,18 @@ import useSWR from "swr";
 
 const fetcher = (url) => fetch(url).then((r) => r.json());
 
-const Profile = () => {
+function Profile() {
   const { data } = useSWR(`https://swapi.dev/api/people/1/`, fetcher, {
     suspense: true,
   });
   return <pre>{JSON.stringify(data, null, 2)}</pre>;
 };
 
-const Example = () => (
+export default function Example() {
   <Suspense fallback={<div>loading...</div>}>
     <Profile />
   </Suspense>
 );
-
-export default Example;
 ```
 
 [![Edit gregrickaby/swr-examples: example-react-suspense](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/github/gregrickaby/swr-examples/tree/master/example-react-suspense?fontsize=14&hidenavigation=1&theme=dark)
