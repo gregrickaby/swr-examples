@@ -11,6 +11,6 @@
     "next": "latest",
     "react": "^0.0.0-experimental-33c3af284",
     "react-dom": "^0.0.0-experimental-33c3af284",
-    "swr": "^0.2.2"
+    "swr": "^0.2.3"
   }
 }
