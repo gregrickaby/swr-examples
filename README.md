@@ -251,4 +251,4 @@ export default function Example() {
 
 ---
 
-Learn more about SWR, and see all the examples on the official [Github](https://github.com/vercel/swr/examples). 👋🏻
+Learn more about SWR, and see all the examples on the official [Github](https://github.com/vercel/swr/tree/master/examples). 👋🏻
