@@ -9,7 +9,7 @@
   },
   "dependencies": {
     "next": "latest",
-    "react": "^0.0.0-experimental-33c3af284",
+    "react": "^0.14.0",
     "react-dom": "^0.0.0-experimental-33c3af284",
     "swr": "^0.2.3"
   }
