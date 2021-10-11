@@ -2,16 +2,19 @@ import { request } from "graphql-request";
 import useSWR from "swr";
 
 const fetcher = (query) =>
-  request(`https://graphql-pokemon.vercel.app/`, query);
+  request(`https://nextjs.wpengine.com/graphql`, query);
 
 export default function Example() {
   const { data, error } = useSWR(
-    `{
-      pokemon(name: "Pikachu") {
-        name
-        image
+    `
+      {
+        pages {
+          nodes {
+            title
+          }
+        }
       }
-    }`,
+    `,
     fetcher
   );
 
