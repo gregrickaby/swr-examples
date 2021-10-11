@@ -8,6 +8,7 @@
     "start": "next start"
   },
   "dependencies": {
+    "graphql": "^15.6.1",
     "graphql-request": "^3.5.0",
     "next": "11.1.2",
     "react": "17.0.2",
