@@ -8,7 +8,7 @@
     "start": "next start"
   },
   "dependencies": {
-    "next": "11.1.2",
+    "next": "11.1.3",
     "react": "^18.0.0-alpha-55d75005b-20211011",
     "react-dom": "^18.0.0-alpha-55d75005b-20211011",
     "swr": "^1.0.1"
